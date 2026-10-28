@@ -1,0 +1,13 @@
+{
+  "image": "image18",
+  "number": 18,
+  "group": "grid",
+  "status": "excluded",
+  "reason": "No windows with at least 3 references; maximum 1",
+  "label_available": false,
+  "shape": [
+    321,
+    428
+  ],
+  "max_available_references": 1
+}

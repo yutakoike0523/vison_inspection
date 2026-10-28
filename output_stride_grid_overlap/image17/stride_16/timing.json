@@ -1,0 +1,14 @@
+{
+  "origin": "previous fixed-condition run",
+  "timings": {
+    "fft_seconds": 1.8120714002288878,
+    "radial_seconds": 0.5064860997954383,
+    "median_seconds": 0.2832664989400655,
+    "score_seconds": 0.08641660056309775,
+    "map_seconds": 0.396914699987974,
+    "total_seconds": 6.340732299955562,
+    "median_2d_seconds": null,
+    "score_2d_seconds": null,
+    "peak_memory_bytes": 182927360
+  }
+}

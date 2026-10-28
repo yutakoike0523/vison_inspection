@@ -1,0 +1,13 @@
+{
+  "image": "C:\\work\\Visual_inspection\\data20260903\\data20260903\\image12.png",
+  "image_width": 2048,
+  "image_height": 1536,
+  "feature_shape": [
+    353,
+    481,
+    64
+  ],
+  "analysis_seconds": 62.88472490001004,
+  "anomaly_mean": 3.885093927383423,
+  "anomaly_max": 181.97911071777344
+}

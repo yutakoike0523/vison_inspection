@@ -1,0 +1,162 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          581.0175438596491,
+          1036.421052631579
+        ],
+        [
+          605.578947368421,
+          1060.982456140351
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          1456.4561403508771,
+          1268.0
+        ],
+        [
+          1484.5263157894738,
+          1289.0526315789473
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          1142.421052631579,
+          1246.9473684210527
+        ],
+        [
+          1174.0,
+          1269.7543859649122
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          56.45614035087732,
+          755.719298245614
+        ],
+        [
+          88.03508771929836,
+          785.5438596491227
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          1212.5,
+          994.5
+        ],
+        [
+          1229.5,
+          1016.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "線状異常",
+      "points": [
+        [
+          914.5,
+          1297.5
+        ],
+        [
+          940.5,
+          1318.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "線状異常",
+      "points": [
+        [
+          244.58823529411768,
+          1101.3333333333335
+        ],
+        [
+          281.843137254902,
+          1130.7450980392157
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "tag",
+      "points": [
+        [
+          2047.6842105263156,
+          594.3157894736842
+        ],
+        [
+          1716.1052631578948,
+          501.3333333333333
+        ],
+        [
+          1481.017543859649,
+          1352.2105263157894
+        ],
+        [
+          2048.0,
+          1509.221052631579
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "image20.png",
+  "imageData": null,
+  "imageHeight": 1536,
+  "imageWidth": 2048
+}

@@ -1,0 +1,21 @@
+{
+  "images": [
+    15,
+    17
+  ],
+  "window": 256,
+  "strides": [
+    16,
+    8,
+    4
+  ],
+  "spacing": 128,
+  "frequency": [
+    0.01,
+    0.5
+  ],
+  "bin_width": 0.01,
+  "workers": 4,
+  "batch_size": 64,
+  "data": "C:\\work\\Visual_inspection\\data20260903\\data20260903"
+}

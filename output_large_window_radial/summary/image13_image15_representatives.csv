@@ -1,0 +1,7 @@
+﻿image,window,spacing,representative_x,representative_y,selection,score,max_abs_difference_bin_center,signed_difference_db,target_overlaps_tag_background,reference_count,reference_overlaps_tag_background_count,normal_representative_x,normal_representative_y,normal_score
+13,256,128,960,432,max score among defect centers,0.7750850915908813,0.035,1.9372062683105469,False,8,1,656,752,0.6001560091972351
+13,320,128,960,384,max score among defect centers,0.6618909239768982,0.505,2.1770668029785156,False,8,3,992,624,0.5461751222610474
+13,384,128,960,400,max score among defect centers,0.4832054078578949,0.025,1.7142486572265625,False,8,3,1776,784,0.367950439453125
+15,256,128,896,224,max score among defect centers,2.5768587589263916,0.255,-3.4468650817871094,False,5,0,544,768,0.5676412582397461
+15,320,128,896,224,max score among defect centers,2.0937914848327637,0.035,3.241811752319336,False,5,0,896,1312,0.5283144116401672
+15,384,128,896,240,max score among defect centers,1.7752223014831543,0.015,3.4856033325195312,True,5,2,720,528,0.34379974007606506

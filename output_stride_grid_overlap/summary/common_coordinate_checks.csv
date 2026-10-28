@@ -1,0 +1,5 @@
+﻿image,stride,common_count,max_abs_difference,matches
+15,8,9153,0.0,True
+15,4,9153,5.793571472167969e-05,False
+17,8,9153,0.0,True
+17,4,9153,4.5299530029296875e-05,False

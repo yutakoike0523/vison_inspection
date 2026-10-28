@@ -1,0 +1,187 @@
+{
+  "image": "image14",
+  "number": 14,
+  "group": "grid",
+  "status": "analyzed",
+  "reason": "",
+  "label_available": true,
+  "shape": [
+    1536,
+    2048
+  ],
+  "max_available_references": 8,
+  "normal": {
+    "count": 6538,
+    "mean": 0.715744137763977,
+    "median": 0.6612073183059692,
+    "std": 0.23629476130008698,
+    "p95": 1.1749212741851807,
+    "p99": 1.5655522346496582,
+    "max": 2.134354829788208
+  },
+  "instances": [
+    {
+      "index": 0,
+      "label": "線状異常",
+      "width": 645,
+      "height": 81,
+      "area": 52245,
+      "long_side": 645,
+      "center": {
+        "count": 200,
+        "mean": 0.8241987824440002,
+        "median": 0.7754826545715332,
+        "std": 0.26226985454559326,
+        "p95": 1.2389081716537476,
+        "p99": 1.740401268005371,
+        "max": 1.9869552850723267,
+        "median_difference": 0.11427533626556396,
+        "S": 0.48361349882165966,
+        "normal_p99_exceed_count": 5,
+        "normal_p99_exceed_rate": 0.025
+      },
+      "overlap": {
+        "count": 1092,
+        "mean": 0.7619172930717468,
+        "median": 0.7100577354431152,
+        "std": 0.24338336288928986,
+        "p95": 1.1746091842651367,
+        "p99": 1.6681305170059204,
+        "max": 2.0697576999664307,
+        "median_difference": 0.048850417137145996,
+        "S": 0.20673508320020473,
+        "normal_p99_exceed_count": 17,
+        "normal_p99_exceed_rate": 0.015567765567765568
+      }
+    }
+  ],
+  "aggregates": {
+    "局所変形": {
+      "annotation_count": 0,
+      "center": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      },
+      "overlap": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      }
+    },
+    "点状異常": {
+      "annotation_count": 0,
+      "center": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      },
+      "overlap": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      }
+    },
+    "線状異常": {
+      "annotation_count": 1,
+      "center": {
+        "count": 200,
+        "mean": 0.8241987824440002,
+        "median": 0.7754826545715332,
+        "std": 0.26226985454559326,
+        "p95": 1.2389081716537476,
+        "p99": 1.740401268005371,
+        "max": 1.9869552850723267,
+        "median_difference": 0.11427533626556396,
+        "S": 0.48361349882165966,
+        "normal_p99_exceed_count": 5,
+        "normal_p99_exceed_rate": 0.025
+      },
+      "overlap": {
+        "count": 1092,
+        "mean": 0.7619172930717468,
+        "median": 0.7100577354431152,
+        "std": 0.24338336288928986,
+        "p95": 1.1746091842651367,
+        "p99": 1.6681305170059204,
+        "max": 2.0697576999664307,
+        "median_difference": 0.048850417137145996,
+        "S": 0.20673508320020473,
+        "normal_p99_exceed_count": 17,
+        "normal_p99_exceed_rate": 0.015567765567765568
+      }
+    },
+    "面状異常": {
+      "annotation_count": 0,
+      "center": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      },
+      "overlap": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      }
+    }
+  },
+  "timings": {
+    "fft_seconds": 1.7919230002444237,
+    "radial_seconds": 0.5066901002428494,
+    "median_seconds": 0.28788499638903886,
+    "score_seconds": 0.08623220084700733,
+    "map_seconds": 0.40197070001158863,
+    "total_seconds": 6.315127499983646,
+    "median_2d_seconds": null,
+    "score_2d_seconds": null,
+    "peak_memory_bytes": 173699072
+  }
+}

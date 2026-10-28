@@ -1,0 +1,14 @@
+{
+  "image": 6,
+  "window": 384,
+  "origin": "new measurement",
+  "timings": {
+    "fft_seconds": 6.1958935998845845,
+    "radial_seconds": 1.6578031997778453,
+    "median_seconds": 0.3517694988986477,
+    "score_seconds": 0.10687470063567162,
+    "map_seconds": 0.491899500018917,
+    "total_seconds": 19.030657800030895,
+    "peak_memory_bytes": 247005184
+  }
+}

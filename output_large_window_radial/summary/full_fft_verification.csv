@@ -1,0 +1,4 @@
+﻿window,full_fft_count_match,max_relative_error
+256,True,7.473825537148258e-07
+320,True,9.744436427916383e-07
+384,True,1.2069578754388302e-06

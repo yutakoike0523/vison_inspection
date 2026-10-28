@@ -1,0 +1,124 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "点状異常",
+      "points": [
+        [
+          1008.7222222222222,
+          1468.0
+        ],
+        [
+          1042.421052631579,
+          1494.3157894736842
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "面状異常",
+      "points": [
+        [
+          625.0,
+          534.0
+        ],
+        [
+          1019.0,
+          220.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "局所変形",
+      "points": [
+        [
+          937.0,
+          976.0
+        ],
+        [
+          1057.0,
+          1098.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "tag",
+      "points": [
+        [
+          0.3513513513513402,
+          58.54054054054046
+        ],
+        [
+          344.94594594594594,
+          185.5675675675675
+        ],
+        [
+          62.51351351351351,
+          995.0270270270269
+        ],
+        [
+          0.0,
+          970.2820945945945
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "background",
+      "points": [
+        [
+          2046.1153846153848,
+          0.6923076923077218
+        ],
+        [
+          2046.1153846153848,
+          1536.0
+        ],
+        [
+          1588.4230769230771,
+          1536.0
+        ],
+        [
+          1843.6682166102178,
+          0.0
+        ],
+        [
+          1844.1923076923076,
+          0.6923076923077218
+        ],
+        [
+          1844.1923076923076,
+          0.6923076923077218
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "image1.png",
+  "imageData": null,
+  "imageHeight": 1536,
+  "imageWidth": 2048
+}

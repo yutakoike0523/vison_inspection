@@ -1,0 +1,12 @@
+{
+  "origin": "new full-image run",
+  "timings": {
+    "fft_seconds": 11.365793201024644,
+    "radial_seconds": 3.0173447993583977,
+    "median_seconds": 1.209736704127863,
+    "score_seconds": 0.3660227037034929,
+    "map_seconds": 1.6913078000070527,
+    "total_seconds": 36.667031799966935,
+    "peak_memory_bytes": 203280384
+  }
+}

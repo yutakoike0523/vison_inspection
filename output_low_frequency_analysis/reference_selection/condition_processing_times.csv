@@ -1,0 +1,4 @@
+﻿condition,mean_seconds,scope
+A,0.1736910125000577,cached FFT; fixed uses saved selection; C includes band-specific selection
+B,0.015149131253565429,cached FFT; fixed uses saved selection; C includes band-specific selection
+C,0.028439900001103524,cached FFT; fixed uses saved selection; C includes band-specific selection

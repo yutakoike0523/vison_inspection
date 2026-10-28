@@ -1,0 +1,230 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "局所変形",
+      "points": [
+        [
+          1112.5964912280701,
+          678.5263157894736
+        ],
+        [
+          1188.0350877192982,
+          750.4561403508771
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "tag",
+      "points": [
+        [
+          616.1052631578948,
+          1.3333333333334174
+        ],
+        [
+          1121.3684210526317,
+          406.5964912280702
+        ],
+        [
+          874.0,
+          741.6842105263157
+        ],
+        [
+          95.05263157894746,
+          108.35087719298252
+        ],
+        [
+          182.43237125070755,
+          0.0
+        ],
+        [
+          182.43237125070755,
+          0.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "background",
+      "points": [
+        [
+          0.3157894736843332,
+          1.3333333333334174
+        ],
+        [
+          177.5087719298246,
+          3.0877192982456982
+        ],
+        [
+          95.05263157894746,
+          106.59649122807025
+        ],
+        [
+          344.17543859649135,
+          310.1052631578948
+        ],
+        [
+          384.5263157894737,
+          1264.4912280701753
+        ],
+        [
+          2047.6842105263156,
+          1369.7543859649122
+        ],
+        [
+          2047.6842105263156,
+          1536.0
+        ],
+        [
+          0.0,
+          1534.6676027397261
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r0_c0",
+      "points": [
+        [
+          1507.3333333333333,
+          485.54385964912285
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r1_c0",
+      "points": [
+        [
+          1444.1754385964912,
+          555.719298245614
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r2_c0",
+      "points": [
+        [
+          1381.017543859649,
+          620.6315789473683
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r0_c1",
+      "points": [
+        [
+          1570.4912280701753,
+          545.1929824561403
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r1_c1",
+      "points": [
+        [
+          1505.578947368421,
+          613.6140350877192
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r2_c1",
+      "points": [
+        [
+          1449.438596491228,
+          680.280701754386
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r0_c2",
+      "points": [
+        [
+          1638.9122807017543,
+          604.8421052631578
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r1_c2",
+      "points": [
+        [
+          1565.2280701754387,
+          675.0175438596491
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "grid01_r2_c2",
+      "points": [
+        [
+          1514.3508771929824,
+          741.6842105263157
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "point",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "image4.png",
+  "imageData": null,
+  "imageHeight": 1536,
+  "imageWidth": 2048
+}

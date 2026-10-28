@@ -1,0 +1,262 @@
+{
+  "image": "image17",
+  "number": 17,
+  "group": "grid",
+  "status": "analyzed",
+  "reason": "",
+  "label_available": true,
+  "shape": [
+    1536,
+    2048
+  ],
+  "max_available_references": 8,
+  "normal": {
+    "count": 3286,
+    "mean": 0.6857583522796631,
+    "median": 0.6320281028747559,
+    "std": 0.21542510390281677,
+    "p95": 1.086944341659546,
+    "p99": 1.4746090173721313,
+    "max": 2.6192991733551025
+  },
+  "instances": [
+    {
+      "index": 0,
+      "label": "局所変形",
+      "width": 80,
+      "height": 87,
+      "area": 6960,
+      "representative": {
+        "x": 656,
+        "y": 336,
+        "selection": "center",
+        "peak_frequency": 0.025,
+        "peak_difference_db": 4.285310745239258
+      },
+      "long_side": 87,
+      "center": {
+        "count": 30,
+        "mean": 1.147942066192627,
+        "median": 1.153607726097107,
+        "std": 0.12067785859107971,
+        "p95": 1.3045252561569214,
+        "p99": 1.3197929859161377,
+        "max": 1.3239973783493042,
+        "median_difference": 0.5215796232223511,
+        "S": 2.421164542910689,
+        "normal_p99_exceed_count": 0,
+        "normal_p99_exceed_rate": 0.0
+      },
+      "overlap": {
+        "count": 462,
+        "mean": 1.2591527700424194,
+        "median": 0.902402937412262,
+        "std": 1.0252318382263184,
+        "p95": 3.85520339012146,
+        "p99": 4.9751996994018555,
+        "max": 5.6688127517700195,
+        "median_difference": 0.2703748345375061,
+        "S": 1.2550757996128363,
+        "normal_p99_exceed_count": 83,
+        "normal_p99_exceed_rate": 0.17965367965367965
+      }
+    },
+    {
+      "index": 1,
+      "label": "点状異常",
+      "width": 38,
+      "height": 38,
+      "area": 1444,
+      "long_side": 38,
+      "center": {
+        "count": 4,
+        "mean": 1.63552987575531,
+        "median": 1.6303746700286865,
+        "std": 0.07265256345272064,
+        "p95": 1.727540135383606,
+        "p99": 1.738226056098938,
+        "max": 1.740897536277771,
+        "median_difference": 0.9983465671539307,
+        "S": 4.634309321741387,
+        "normal_p99_exceed_count": 4,
+        "normal_p99_exceed_rate": 1.0
+      },
+      "overlap": {
+        "count": 324,
+        "mean": 0.6794294118881226,
+        "median": 0.626063346862793,
+        "std": 0.2372903972864151,
+        "p95": 1.209813117980957,
+        "p99": 1.6041029691696167,
+        "max": 1.740897536277771,
+        "median_difference": -0.005964756011962891,
+        "S": -0.027688305141325264,
+        "normal_p99_exceed_count": 8,
+        "normal_p99_exceed_rate": 0.024691358024691357
+      }
+    },
+    {
+      "index": 2,
+      "label": "点状異常",
+      "width": 63,
+      "height": 45,
+      "area": 2835,
+      "long_side": 63,
+      "center": {
+        "count": 12,
+        "mean": 0.9680120348930359,
+        "median": 0.9735792279243469,
+        "std": 0.08152911067008972,
+        "p95": 1.0714606046676636,
+        "p99": 1.0719486474990845,
+        "max": 1.0720707178115845,
+        "median_difference": 0.34155112504959106,
+        "S": 1.585475039174973,
+        "normal_p99_exceed_count": 0,
+        "normal_p99_exceed_rate": 0.0
+      },
+      "overlap": {
+        "count": 380,
+        "mean": 0.9443964958190918,
+        "median": 0.7483551502227783,
+        "std": 0.525168776512146,
+        "p95": 2.1580448150634766,
+        "p99": 2.6108460426330566,
+        "max": 2.806765556335449,
+        "median_difference": 0.11632704734802246,
+        "S": 0.5399883543772144,
+        "normal_p99_exceed_count": 52,
+        "normal_p99_exceed_rate": 0.1368421052631579
+      }
+    }
+  ],
+  "aggregates": {
+    "局所変形": {
+      "annotation_count": 1,
+      "center": {
+        "count": 30,
+        "mean": 1.147942066192627,
+        "median": 1.153607726097107,
+        "std": 0.12067785859107971,
+        "p95": 1.3045252561569214,
+        "p99": 1.3197929859161377,
+        "max": 1.3239973783493042,
+        "median_difference": 0.5215796232223511,
+        "S": 2.421164542910689,
+        "normal_p99_exceed_count": 0,
+        "normal_p99_exceed_rate": 0.0
+      },
+      "overlap": {
+        "count": 462,
+        "mean": 1.2591527700424194,
+        "median": 0.902402937412262,
+        "std": 1.0252318382263184,
+        "p95": 3.85520339012146,
+        "p99": 4.9751996994018555,
+        "max": 5.6688127517700195,
+        "median_difference": 0.2703748345375061,
+        "S": 1.2550757996128363,
+        "normal_p99_exceed_count": 83,
+        "normal_p99_exceed_rate": 0.17965367965367965
+      }
+    },
+    "点状異常": {
+      "annotation_count": 2,
+      "center": {
+        "count": 16,
+        "mean": 1.1348915100097656,
+        "median": 1.0260283946990967,
+        "std": 0.29975172877311707,
+        "p95": 1.6741105318069458,
+        "p99": 1.727540135383606,
+        "max": 1.740897536277771,
+        "median_difference": 0.3940002918243408,
+        "S": 1.8289432600301003,
+        "normal_p99_exceed_count": 4,
+        "normal_p99_exceed_rate": 0.25
+      },
+      "overlap": {
+        "count": 704,
+        "mean": 0.8224514126777649,
+        "median": 0.6803146600723267,
+        "std": 0.43843501806259155,
+        "p95": 1.871581792831421,
+        "p99": 2.54815673828125,
+        "max": 2.806765556335449,
+        "median_difference": 0.0482865571975708,
+        "S": 0.22414545158745278,
+        "normal_p99_exceed_count": 60,
+        "normal_p99_exceed_rate": 0.08522727272727272
+      }
+    },
+    "線状異常": {
+      "annotation_count": 0,
+      "center": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      },
+      "overlap": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      }
+    },
+    "面状異常": {
+      "annotation_count": 0,
+      "center": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      },
+      "overlap": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "std": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "median_difference": null,
+        "S": null,
+        "normal_p99_exceed_count": null,
+        "normal_p99_exceed_rate": null
+      }
+    }
+  },
+  "timings": {
+    "fft_seconds": 1.8120714002288878,
+    "radial_seconds": 0.5064860997954383,
+    "median_seconds": 0.2832664989400655,
+    "score_seconds": 0.08641660056309775,
+    "map_seconds": 0.396914699987974,
+    "total_seconds": 6.340732299955562,
+    "median_2d_seconds": null,
+    "score_2d_seconds": null,
+    "peak_memory_bytes": 182927360
+  }
+}

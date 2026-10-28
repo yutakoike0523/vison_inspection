@@ -1,0 +1,57 @@
+{
+  "image": "C:\\work\\Visual_inspection\\data20260903\\data20260903\\image5.png",
+  "windows": [
+    64,
+    128,
+    192,
+    256
+  ],
+  "stride": 16,
+  "reference_grid": 3,
+  "reference_spacing_px": 128,
+  "fft_workers": 4,
+  "batch_size": 64,
+  "bin_width": 0.01,
+  "frequency_ranges": [
+    [
+      0.005,
+      0.5
+    ],
+    [
+      0.01,
+      0.5
+    ],
+    [
+      0.02,
+      0.5
+    ],
+    [
+      0.02,
+      0.2
+    ]
+  ],
+  "min_full_fft_component_count": 4,
+  "radial_bin_rule": "floor(radius/bin_width), include only components in frequency range",
+  "full_fft_checks": [
+    {
+      "window": 64,
+      "max_relative_error": 2.2241620161212746e-07,
+      "weighted_counts_match": true
+    },
+    {
+      "window": 128,
+      "max_relative_error": 3.107013517535928e-07,
+      "weighted_counts_match": true
+    },
+    {
+      "window": 192,
+      "max_relative_error": 7.41658554780442e-07,
+      "weighted_counts_match": true
+    },
+    {
+      "window": 256,
+      "max_relative_error": 7.878781046366284e-07,
+      "weighted_counts_match": true
+    }
+  ]
+}

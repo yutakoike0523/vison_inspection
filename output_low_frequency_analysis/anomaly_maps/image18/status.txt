@@ -1,0 +1,1 @@
+No valid location with at least 3 candidates or no label.

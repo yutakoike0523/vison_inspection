@@ -1,0 +1,20 @@
+{
+  "data": "C:\\work\\Visual_inspection\\data20260903\\data20260903",
+  "windows": [
+    64,
+    128,
+    192,
+    256
+  ],
+  "stride": 16,
+  "spacing": 128,
+  "min_references": 3,
+  "frequency": [
+    0.01,
+    0.5
+  ],
+  "bin_width": 0.01,
+  "workers": 4,
+  "batch_size": 64,
+  "minimum_defect_points": 4
+}

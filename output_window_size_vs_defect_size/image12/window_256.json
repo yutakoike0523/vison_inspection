@@ -1,0 +1,17 @@
+{
+  "status": "analyzed",
+  "window": 256,
+  "image": 12,
+  "origin": "previous fixed-condition experiment",
+  "timings": {
+    "fft_seconds": 1.811258000205271,
+    "radial_seconds": 0.5114341999869794,
+    "median_seconds": 0.28705970372539014,
+    "score_seconds": 0.0874049992999062,
+    "map_seconds": 0.40165620000334457,
+    "total_seconds": 6.370464799983893,
+    "median_2d_seconds": null,
+    "score_2d_seconds": null,
+    "peak_memory_bytes": 177111040
+  }
+}

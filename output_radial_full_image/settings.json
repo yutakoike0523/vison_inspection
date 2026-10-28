@@ -1,0 +1,10 @@
+{
+  "data": "C:\\work\\Visual_inspection\\data20260903\\data20260903",
+  "window": 128,
+  "stride": 4,
+  "batch_size": 64,
+  "workers": -1,
+  "radial_freq_max": 0.5,
+  "hann": true,
+  "algorithm": "full FFT; unnormalized power; linear radial mean then dB; global median reference"
+}

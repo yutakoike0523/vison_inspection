@@ -1,0 +1,11 @@
+﻿relationship,window,N,pearson,spearman,note
+long_side_px vs S,64,15,0.0266420285365845,-0.021486201038944025,descriptive only; instances from one image may not be independent
+annotation_area_px2 vs S,64,15,-0.036555812800875644,-0.05714285714285713,descriptive only; instances from one image may not be independent
+long_side_px vs S,128,15,-0.2475756742076413,-0.282901647012763,descriptive only; instances from one image may not be independent
+annotation_area_px2 vs S,128,15,-0.3189918748618332,-0.3571428571428571,descriptive only; instances from one image may not be independent
+long_side_px vs S,192,15,0.03302832760030581,-0.0752017036363041,descriptive only; instances from one image may not be independent
+annotation_area_px2 vs S,192,15,-0.06553846250202335,-0.10714285714285714,descriptive only; instances from one image may not be independent
+long_side_px vs S,256,15,0.5002695900390213,0.3616843841555577,descriptive only; instances from one image may not be independent
+annotation_area_px2 vs S,256,15,0.399785428145034,0.33571428571428563,descriptive only; instances from one image may not be independent
+long_side vs best_window,all,15,0.26163051988616587,0.23115471888081865,descriptive only; repeated windows not independent; no significance test
+size_ratio vs S (repeated instances),all,60,-0.38165132675312924,-0.5304466412014008,descriptive only; repeated windows not independent; no significance test
