@@ -1,49 +1,129 @@
-"""Interactive viewer for strict-B8 FFT heatmaps, grid points and annotations."""
+"""厳密8参照 FFT 異常度、格子周期、傷アノテーションの対話ビューア。"""
 from pathlib import Path
-import json, re
+import json
+import re
+
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-from matplotlib.widgets import RadioButtons, Slider
+from matplotlib.widgets import RadioButtons
 from matplotlib.patches import Rectangle, Polygon
 
-ROOT=Path(__file__).resolve().parent; DATA=ROOT/'data20260903'/'data20260903'; MAPS=ROOT/'output_strict_b8_window_maps'/'maps'; WS=(32,64,128,256,512)
-def shapes(i): return json.loads((DATA/f'image{i}.json').read_text(encoding='utf-8'))['shapes']
-def period(i):
-    q={}
-    for s in shapes(i):
-      m=re.match(r'grid\d+_r(\d+)-?_c(\d+)',s['label'])
-      if m and s.get('points'):q[(int(m.group(1)),int(m.group(2)))]=np.mean(s['points'],axis=0)
-    h=[np.linalg.norm(q[r,c+1]-q[r,c]) for r,c in q if (r,c+1) in q];v=[np.linalg.norm(q[r+1,c]-q[r,c]) for r,c in q if (r+1,c) in q]
-    return (np.median(h),np.median(v),(np.median(h)*np.median(v))**.5) if h and v else (np.nan,np.nan,np.nan)
-def draw(i,w):
-    ax_img.clear(); ax_map.clear(); ax_img.imshow(Image.open(DATA/f'image{i}.png').convert('L'),cmap='gray')
-    path=MAPS/f'image{i}_w{w}.npz'
-    pu,pv,p=period(i)
-    if not path.exists():
-      ax_map.set_title(f'W={w}px: not evaluated (eight references do not fit)'); ax_map.set_facecolor('black'); info.set_text(f'image{i} | FFT window W={w}px | grid period p={p:.1f}px | W/p={w/p:.2f}\nNo valid locations with all 8 reference blocks'); fig.canvas.draw_idle(); return
-    with np.load(path) as z: a=z['anomaly_map']; x=z['x_centers']; y=z['y_centers']
-    vals=a[np.isfinite(a)]; im=ax_map.imshow(a,extent=[x[0]-8,x[-1]+8,y[-1]+8,y[0]-8],cmap='inferno',vmin=np.percentile(vals,1),vmax=np.percentile(vals,99))
-    info.set_text(f'image{i} | FFT window (batch size) W={w}px | grid period p={p:.1f}px (horizontal {pu:.1f}, vertical {pv:.1f}) | W/p={w/p:.2f}\nvalid locations: {len(vals):,} | RMS median: {np.median(vals):.3f} dB | RMS p95: {np.percentile(vals,95):.3f} dB')
-    for ax in (ax_img,ax_map): ax.set_xlim(0,2048);ax.set_ylim(1536,0);ax.set_xlabel('x (px)');ax.set_ylabel('y (px)')
-    pts=[]
-    for s in shapes(i):
-      lab=s['label']; p=s.get('points',[])
-      if re.match(r'grid\d+_r\d+-?_c\d+',lab): pts.append(np.mean(p,axis=0))
-      elif lab=='tag' and s.get('shape_type')=='polygon':
-       for ax in (ax_img,ax_map): ax.add_patch(Polygon(p,closed=True,fill=False,edgecolor='cyan',linewidth=1.3))
-      elif s.get('shape_type')=='rectangle' and p:
-       (x0,y0),(x1,y1)=p
-       for ax in (ax_img,ax_map): ax.add_patch(Rectangle((x0,y0),x1-x0,y1-y0,fill=False,edgecolor='lime',linewidth=1.2))
-    if pts:
-      q=np.array(pts)
-      for ax in (ax_img,ax_map):ax.scatter(q[:,0],q[:,1],s=18,c='deepskyblue',edgecolors='black',linewidths=.4)
-    ax_img.set_title(f'image{i}: original | cyan=grid points, tag outline; lime=damage boxes')
-    ax_map.set_title(f'W={w}px | strict 8-reference RMS | black=NaN')
+# Windows の日本語フォントを明示し、環境依存の文字化けを防ぐ。
+plt.rcParams['font.family'] = 'Meiryo'
+plt.rcParams['axes.unicode_minus'] = False
+
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / 'data20260903' / 'data20260903'
+MAPS = ROOT / 'output_strict_b8_window_maps' / 'maps'
+WINDOW_SIZES = (32, 64, 128, 256, 512)
+
+
+def shapes(image_id):
+    return json.loads((DATA / f'image{image_id}.json').read_text(encoding='utf-8'))['shapes']
+
+
+def grid_period(image_id):
+    """格子アノテーションから横・縦の1周期[pixel]を推定する。"""
+    points = {}
+    for shape in shapes(image_id):
+        match = re.match(r'grid\d+_r(\d+)-?_c(\d+)', shape['label'])
+        if match and shape.get('points'):
+            points[(int(match.group(1)), int(match.group(2)))] = np.mean(shape['points'], axis=0)
+    horizontal = [np.linalg.norm(points[r, c + 1] - points[r, c]) for r, c in points if (r, c + 1) in points]
+    vertical = [np.linalg.norm(points[r + 1, c] - points[r, c]) for r, c in points if (r + 1, c) in points]
+    if not horizontal or not vertical:
+        return np.nan, np.nan, np.nan
+    px, py = np.median(horizontal), np.median(vertical)
+    return px, py, np.sqrt(px * py)
+
+
+def draw(image_id, window_size):
+    ax_img.clear()
+    ax_map.clear()
+    ax_hist.clear()
+    ax_img.imshow(Image.open(DATA / f'image{image_id}.png').convert('L'), cmap='gray')
+    px, py, period = grid_period(image_id)
+    map_path = MAPS / f'image{image_id}_w{window_size}.npz'
+    if map_path.exists():
+        with np.load(map_path) as data:
+            score, xs, ys = data['anomaly_map'], data['x_centers'], data['y_centers']
+        valid = score[np.isfinite(score)]
+        ax_map.imshow(score, extent=[xs[0]-8, xs[-1]+8, ys[-1]+8, ys[0]-8], cmap='inferno',
+                      vmin=np.percentile(valid, 1), vmax=np.percentile(valid, 99))
+        # 同一の選択条件での異常度分布。外れ値も省かずに表示する。
+        ax_hist.hist(valid, bins=60, color='darkorange', alpha=.82, edgecolor='none')
+        median = np.median(valid)
+        p95 = np.percentile(valid, 95)
+        ax_hist.axvline(median, color='deepskyblue', linewidth=1.5, label=f'median {median:.3f} dB')
+        ax_hist.axvline(p95, color='lime', linewidth=1.5, linestyle='--', label=f'p95 {p95:.3f} dB')
+        ax_hist.set(title='異常度ヒストグラム（計算できた全地点）', xlabel='Strict-B8 RMS 異常度 (dB)', ylabel='地点数')
+        ax_hist.legend(fontsize=8, loc='upper right')
+        status = f'有効地点: {len(valid):,} | RMS 中央値: {np.median(valid):.3f} dB | RMS 95%点: {np.percentile(valid, 95):.3f} dB'
+        ax_map.set_title(f'異常度ヒートマップ: W={window_size}px | 8参照 RMS | 黒=計算対象外')
+    else:
+        ax_map.set_facecolor('black')
+        ax_hist.text(.5, .5, '評価可能な異常度はありません', ha='center', va='center', transform=ax_hist.transAxes)
+        ax_hist.set_axis_off()
+        status = '8個の参照ブロックがすべて入る地点がありません'
+        ax_map.set_title(f'異常度ヒートマップ: W={window_size}px | 評価不可')
+    ratio = window_size / period if np.isfinite(period) else np.nan
+    info.set_text(
+        f'image{image_id} | 格子1周期: {px:.1f} × {py:.1f} px（横 × 縦） | '
+        f'FFT窓（バッチサイズ）: {window_size} × {window_size} px | '
+        f'窓/格子比 W/p={ratio:.2f}\n{status}'
+    )
+
+    grid_points = []
+    for shape in shapes(image_id):
+        label, points = shape['label'], shape.get('points', [])
+        if re.match(r'grid\d+_r\d+-?_c\d+', label):
+            grid_points.append(np.mean(points, axis=0))
+        elif label == 'tag' and shape.get('shape_type') == 'polygon':
+            for ax in (ax_img, ax_map):
+                ax.add_patch(Polygon(points, closed=True, fill=False, edgecolor='cyan', linewidth=1.3))
+        elif shape.get('shape_type') == 'rectangle' and points:
+            (x0, y0), (x1, y1) = points
+            for ax in (ax_img, ax_map):
+                ax.add_patch(Rectangle((x0, y0), x1-x0, y1-y0, fill=False, edgecolor='lime', linewidth=1.2))
+    if grid_points:
+        grid_points = np.asarray(grid_points)
+        for ax in (ax_img, ax_map):
+            ax.scatter(grid_points[:, 0], grid_points[:, 1], s=18, c='deepskyblue', edgecolors='black', linewidths=.4)
+    for ax in (ax_img, ax_map):
+        ax.set_xlim(0, 2048)
+        ax.set_ylim(1536, 0)
+        ax.set_xlabel('x (px)')
+        ax.set_ylabel('y (px)')
+    ax_img.set_title(f'image{image_id}: 元画像 | 水色=格子点・tag輪郭、黄緑=傷アノテーション')
     fig.canvas.draw_idle()
-fig=plt.figure(figsize=(15,8)); info=fig.text(.06,.955,'',fontsize=10,va='top'); ax_img=fig.add_axes([.06,.12,.38,.78]);ax_map=fig.add_axes([.50,.12,.38,.78]);ax_i=fig.add_axes([.90,.55,.08,.35]);ax_w=fig.add_axes([.90,.18,.08,.27]);ax_i.set_title('画像選択');ax_w.set_title('FFT窓\nサイズ W')
-ri=RadioButtons(ax_i,[str(i) for i in range(1,22)],active=1);rw=RadioButtons(ax_w,[str(w) for w in WS],active=2)
-state={'i':2,'w':128}
-def change_i(label):state['i']=int(label);draw(**state)
-def change_w(label):state['w']=int(label);draw(**state)
-ri.on_clicked(change_i);rw.on_clicked(change_w);draw(**state);plt.show()
+
+
+fig = plt.figure(figsize=(15, 10))
+info = fig.text(.06, .955, '', fontsize=10, va='top')
+ax_img = fig.add_axes([.06, .34, .38, .56])
+ax_map = fig.add_axes([.50, .34, .38, .56])
+ax_hist = fig.add_axes([.06, .07, .82, .17])
+ax_image = fig.add_axes([.90, .55, .08, .35])
+ax_window = fig.add_axes([.90, .18, .08, .27])
+ax_image.set_title('画像選択')
+ax_window.set_title('FFT窓\nサイズ W')
+image_radio = RadioButtons(ax_image, [str(i) for i in range(1, 22)], active=1)
+window_radio = RadioButtons(ax_window, [str(w) for w in WINDOW_SIZES], active=2)
+state = {'image_id': 2, 'window_size': 128}
+
+
+def change_image(label):
+    state['image_id'] = int(label)
+    draw(**state)
+
+
+def change_window(label):
+    state['window_size'] = int(label)
+    draw(**state)
+
+
+image_radio.on_clicked(change_image)
+window_radio.on_clicked(change_window)
+draw(**state)
+plt.show()
