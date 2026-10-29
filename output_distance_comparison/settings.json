@@ -1,0 +1,29 @@
+{
+  "window": 128,
+  "evaluation_size": 16,
+  "stride": 16,
+  "distances": [
+    16,
+    32,
+    48,
+    64,
+    72,
+    80,
+    96,
+    128
+  ],
+  "normalisation_band": [
+    0.02,
+    0.5
+  ],
+  "rms_band": [
+    0.02,
+    0.5
+  ],
+  "bin_width": 0.01,
+  "reference_count": 8,
+  "reference_aggregation": "arithmetic mean in dB",
+  "score": "RMS in dB",
+  "threshold": "same-group LOIO equal-image-weighted normal p99",
+  "data": "C:\\work\\vison_inspection\\data20260903\\data20260903"
+}

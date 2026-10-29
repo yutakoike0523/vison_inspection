@@ -1,0 +1,3 @@
+﻿image_id,window_size,reason
+image18,256,"no in-image reference window at d=W; image=428x321, W=256"
+image18,512,"analysis window does not fit image; image=428x321, W=512"

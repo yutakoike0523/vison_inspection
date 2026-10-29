@@ -1,0 +1,25 @@
+{
+  "data": "C:\\work\\vison_inspection\\data20260903\\data20260903",
+  "windows": [
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "stride": 16,
+  "evaluation_size": 16,
+  "power_normalisation": "none",
+  "fft_scaling": "scipy.fft.rfft2 default backward; power=abs(F)^2; no W division",
+  "rms_frequency": [
+    0.02,
+    0.5
+  ],
+  "radial_bin_width": 0.01,
+  "reference_count": 8,
+  "reference_distance": "d=W",
+  "reference_spectrum": "arithmetic mean of 8 dB radial spectra",
+  "score": "RMS dB difference",
+  "threshold": "same-lighting-group LOIO equal-image-weighted normal p99",
+  "requested_fft_batch_size": 64
+}

@@ -1,0 +1,4 @@
+﻿image_id,window_size,reason
+image18,128,"no position with all 8 references at d=W; image=428x321, required edge margin=192"
+image18,256,"no position with all 8 references at d=W; image=428x321, required edge margin=384"
+image18,512,"no position with all 8 references at d=W; image=428x321, required edge margin=768"
