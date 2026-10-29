@@ -15,12 +15,19 @@ plt.rcParams['axes.unicode_minus'] = False
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data20260903' / 'data20260903'
-MAPS = ROOT / 'output_strict_b8_window_maps' / 'maps'
+PATCHED_DATA = ROOT / 'data_tag_patch_matched'
+MAPS = ROOT / 'output_tag_patch_matched_fft' / 'maps'
 WINDOW_SIZES = (32, 64, 128, 256, 512)
 
 
 def shapes(image_id):
     return json.loads((DATA / f'image{image_id}.json').read_text(encoding='utf-8'))['shapes']
+
+
+def display_image_path(image_id):
+    """Show the tag-patch-repaired source when it exists."""
+    patched = PATCHED_DATA / f'image{image_id}_tag_patch.png'
+    return patched if patched.exists() else DATA / f'image{image_id}.png'
 
 
 def grid_period(image_id):
@@ -42,7 +49,7 @@ def draw(image_id, window_size):
     ax_img.clear()
     ax_map.clear()
     ax_hist.clear()
-    ax_img.imshow(Image.open(DATA / f'image{image_id}.png').convert('L'), cmap='gray')
+    ax_img.imshow(Image.open(display_image_path(image_id)).convert('L'), cmap='gray')
     px, py, period = grid_period(image_id)
     map_path = MAPS / f'image{image_id}_w{window_size}.npz'
     if map_path.exists():
@@ -57,15 +64,15 @@ def draw(image_id, window_size):
         p95 = np.percentile(valid, 95)
         ax_hist.axvline(median, color='deepskyblue', linewidth=1.5, label=f'median {median:.3f} dB')
         ax_hist.axvline(p95, color='lime', linewidth=1.5, linestyle='--', label=f'p95 {p95:.3f} dB')
-        ax_hist.set(title='異常度ヒストグラム（計算できた全地点）', xlabel='Strict-B8 RMS 異常度 (dB)', ylabel='地点数')
+        ax_hist.set(title='異常度ヒストグラム（計算できた全地点）', xlabel='周囲ブロック平均との差の RMS 異常度 (dB)', ylabel='地点数')
         ax_hist.legend(fontsize=8, loc='upper right')
         status = f'有効地点: {len(valid):,} | RMS 中央値: {np.median(valid):.3f} dB | RMS 95%点: {np.percentile(valid, 95):.3f} dB'
-        ax_map.set_title(f'異常度ヒートマップ: W={window_size}px | 8参照 RMS | 黒=計算対象外')
+        ax_map.set_title(f'異常度ヒートマップ: W={window_size}px | 札パッチ置換後・利用可能な周囲参照の平均 RMS | 黒=計算対象外')
     else:
         ax_map.set_facecolor('black')
         ax_hist.text(.5, .5, '評価可能な異常度はありません', ha='center', va='center', transform=ax_hist.transAxes)
         ax_hist.set_axis_off()
-        status = '8個の参照ブロックがすべて入る地点がありません'
+        status = '周囲の参照ブロックが入る地点がありません'
         ax_map.set_title(f'異常度ヒートマップ: W={window_size}px | 評価不可')
     ratio = window_size / period if np.isfinite(period) else np.nan
     info.set_text(
@@ -80,12 +87,42 @@ def draw(image_id, window_size):
         if re.match(r'grid\d+_r\d+-?_c\d+', label):
             grid_points.append(np.mean(points, axis=0))
         elif label == 'tag' and shape.get('shape_type') == 'polygon':
-            for ax in (ax_img, ax_map):
-                ax.add_patch(Polygon(points, closed=True, fill=False, edgecolor='cyan', linewidth=1.3))
+            # The repaired source already removes this region; do not redraw its old outline.
+            continue
         elif shape.get('shape_type') == 'rectangle' and points:
             (x0, y0), (x1, y1) = points
             for ax in (ax_img, ax_map):
                 ax.add_patch(Rectangle((x0, y0), x1-x0, y1-y0, fill=False, edgecolor='lime', linewidth=1.2))
+
+    # Explain a lower-left FFT batch. Its score is drawn as a 16 x 16 px cell
+    # centred on the batch centre, so it does not cover the grid-point overlay.
+    batch_x = 0
+    batch_y = 1536 - window_size
+    batch_center_x = batch_x + window_size / 2
+    batch_center_y = batch_y + window_size / 2
+    display_cell = 16
+    cell_x = batch_center_x - display_cell / 2
+    cell_y = batch_center_y - display_cell / 2
+    for ax in (ax_img, ax_map):
+        ax.add_patch(Rectangle(
+            (batch_x, batch_y), window_size, window_size, fill=False,
+            edgecolor='deepskyblue', linewidth=2.0, linestyle='--', zorder=10,
+        ))
+        ax.scatter(
+            [batch_center_x], [batch_center_y], marker='x', s=52,
+            c='deepskyblue', linewidths=1.7, zorder=12,
+        )
+        ax.add_patch(Rectangle(
+            (cell_x, cell_y), display_cell, display_cell,
+            facecolor='none', edgecolor='magenta', linewidth=1.8, zorder=11,
+        ))
+    ax_map.text(
+        .01, -.12,
+        f'水色破線：左下FFTバッチ (0, {batch_y})〜{window_size}×{window_size}px　'
+        f'×：中心　紫枠：中心16×16pxの表示セル',
+        transform=ax_map.transAxes, ha='left', va='top', fontsize=7,
+        color='deepskyblue', clip_on=False,
+    )
     if grid_points:
         grid_points = np.asarray(grid_points)
         for ax in (ax_img, ax_map):

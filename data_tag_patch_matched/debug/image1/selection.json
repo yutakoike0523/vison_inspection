@@ -1,0 +1,15 @@
+[
+  {
+    "component": 1,
+    "pixels": 193869,
+    "source_shift_dx": 270,
+    "source_shift_dy": 399,
+    "boundary_ssd": 2261.219482421875,
+    "target_bbox_xyxy": [
+      0,
+      55,
+      349,
+      999
+    ]
+  }
+]

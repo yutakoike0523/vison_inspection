@@ -1,4 +1,4 @@
-"""Strict 8-neighbour radial-FFT RMS maps: W={32,64,128,256,512}, stride=16."""
+"""Radial-FFT RMS maps using every available one of the 8 surrounding blocks."""
 from __future__ import annotations
 import csv, time
 from pathlib import Path
@@ -10,14 +10,32 @@ import evaluate_all_radial_fft as prev
 import multiscale_fft_experiment as base
 
 ROOT=Path(__file__).resolve().parent; OUT=ROOT/'output_strict_b8_window_maps'; WS=(32,64,128,256,512); STRIDE=16
-def rms8(spectra,w):
-    step=w//STRIDE; ny,nx,_=spectra.shape; out=np.full((ny,nx),np.nan,np.float32)
-    if step<1 or ny<=2*step or nx<=2*step:return out
-    refs=np.stack([spectra[:ny-2*step,:nx-2*step],spectra[:ny-2*step,step:nx-step],spectra[:ny-2*step,2*step:],spectra[step:ny-step,:nx-2*step],spectra[step:ny-step,2*step:],spectra[2*step:,:nx-2*step],spectra[2*step:,step:nx-step],spectra[2*step:,2*step:]],0)
-    # Above stack deliberately contains the eight NW,N,NE,W,E,SW,S,SE positions.
-    target=spectra[step:ny-step,step:nx-step]
-    out[step:ny-step,step:nx-step]=np.sqrt(np.mean((target-refs.mean(0))**2,axis=-1))
-    return out
+def rms8(spectra, w):
+    """Score every location from the mean of its in-image 8-neighbour subset."""
+    step = w // STRIDE
+    ny, nx, _ = spectra.shape
+    out = np.full((ny, nx), np.nan, np.float32)
+    counts = np.zeros((ny, nx), np.uint8)
+    if step < 1:
+        return out, counts
+
+    ref_sum = np.zeros_like(spectra, dtype=np.float32)
+    # NW, N, NE, W, E, SW, S and SE, one window width from the target.
+    for dy, dx in ((-step, -step), (-step, 0), (-step, step),
+                   (0, -step),                  (0, step),
+                   (step, -step),  (step, 0),   (step, step)):
+        target_y = slice(max(0, -dy), min(ny, ny - dy))
+        target_x = slice(max(0, -dx), min(nx, nx - dx))
+        ref_y = slice(max(0, dy), min(ny, ny + dy))
+        ref_x = slice(max(0, dx), min(nx, nx + dx))
+        ref_sum[target_y, target_x] += spectra[ref_y, ref_x]
+        counts[target_y, target_x] += 1
+
+    valid = counts > 0
+    reference_mean = np.zeros_like(spectra, dtype=np.float32)
+    reference_mean[valid] = ref_sum[valid] / counts[valid, None]
+    out[valid] = np.sqrt(np.mean((spectra[valid] - reference_mean[valid]) ** 2, axis=-1))
+    return out, counts
 def main():
     (OUT/'maps').mkdir(parents=True,exist_ok=True); (OUT/'comparisons').mkdir(exist_ok=True); rows=[]
     oldN,oldS=prev.N,prev.SPACING
@@ -25,10 +43,11 @@ def main():
       maps={}
       for i in range(1,22):
         p=base.DATA/f'image{i}.png'; img=np.asarray(Image.open(p).convert('L'),dtype=np.float32); start=time.perf_counter(); prev.N=w; prev.SPACING=w
-        if img.shape[0]<3*w or img.shape[1]<3*w:
+        # One adjacent reference only needs two window widths in each direction.
+        if img.shape[0]<2*w or img.shape[1]<2*w:
           rows.append(dict(image_id=f'image{i}',window_size=w,stride=16,status='not evaluated',num_valid_locations=0,anomaly_min=None,anomaly_max=None,anomaly_mean=None,anomaly_median=None,anomaly_std=None,seconds=0)); continue
-        r=prev.analyze(img,workers=1,batch=32,also_2d=False); score=rms8(r['spectra'],w); vals=score[np.isfinite(score)]; maps[i]=(img,r,score)
-        np.savez_compressed(OUT/'maps'/f'image{i}_w{w}.npz',anomaly_map=score,x_centers=r['xs'],y_centers=r['ys'],window=w,stride=16,reference_spacing=w,reference_count=8)
+        r=prev.analyze(img,workers=1,batch=32,also_2d=False); score, ref_counts=rms8(r['spectra'],w); vals=score[np.isfinite(score)]; maps[i]=(img,r,score)
+        np.savez_compressed(OUT/'maps'/f'image{i}_w{w}.npz',anomaly_map=score,x_centers=r['xs'],y_centers=r['ys'],window=w,stride=16,reference_spacing=w,reference_count=8,reference_counts=ref_counts)
         rows.append(dict(image_id=f'image{i}',window_size=w,stride=16,status='ok',num_valid_locations=len(vals),anomaly_min=float(vals.min()),anomaly_max=float(vals.max()),anomaly_mean=float(vals.mean()),anomaly_median=float(np.median(vals)),anomaly_std=float(vals.std()),seconds=time.perf_counter()-start)); print(i,w,flush=True)
       # all-image contact sheet; each image has its own robust display scale
       fig,axes=plt.subplots(7,3,figsize=(18,27),constrained_layout=True)
@@ -57,10 +76,19 @@ def main():
     fig,ax=plt.subplots(figsize=(8,4));
     for w in WS:
       q=[r for r in rows if r['window_size']==w and r['status']=='ok'];ax.scatter([w]*len(q),[r['num_valid_locations'] for r in q],alpha=.6)
-    ax.set(xlabel='window size (px)',ylabel='valid locations (all 8 references)');fig.savefig(OUT/'window_size_valid_locations.png',dpi=150,bbox_inches='tight');plt.close(fig)
+    ax.set(xlabel='window size (px)',ylabel='valid locations (at least 1 reference)');fig.savefig(OUT/'window_size_valid_locations.png',dpi=150,bbox_inches='tight');plt.close(fig)
     fig,ax=plt.subplots(figsize=(8,4));
     for w in WS:
       q=[r['seconds'] for r in rows if r['window_size']==w and r['status']=='ok'];ax.bar(str(w),np.median(q) if q else 0)
     ax.set(xlabel='window size (px)',ylabel='median processing seconds / image');fig.savefig(OUT/'window_size_runtime_summary.png',dpi=150,bbox_inches='tight');plt.close(fig)
     (OUT/'report.md').write_text('## Strict B8 radial-FFT maps\n\nEach block is mean-subtracted, Hann-windowed, and transformed with rFFT2. Power is normalized by total in-band power then radial-bin averaged; log10 power spectra over 0.01–0.50 cycles/pixel are compared. Score = RMS(target spectrum − mean of 8 reference spectra). Only all-8-reference locations are valid.\n',encoding='utf-8')
+    (OUT/'report.md').write_text(
+        '## Available-neighbour radial-FFT maps\n\n'
+        'Each block is mean-subtracted, Hann-windowed, and transformed with rFFT2. '
+        'Power is normalized by total in-band power then radial-bin averaged. '
+        'Score = RMS(target spectrum minus the mean of available surrounding reference spectra). '
+        'The candidates are NW, N, NE, W, E, SW, S and SE at one window-width separation; '
+        'at edges and corners, only in-image candidates are used.\n',
+        encoding='utf-8',
+    )
 if __name__=='__main__':main()
