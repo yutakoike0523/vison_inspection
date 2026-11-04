@@ -1,0 +1,33 @@
+{
+  "window_px": 128,
+  "stride_px": 16,
+  "reference_distance_px": 128,
+  "bands": [
+    [
+      0.0,
+      0.02
+    ],
+    [
+      0.02,
+      0.05
+    ],
+    [
+      0.05,
+      0.1
+    ],
+    [
+      0.1,
+      0.2
+    ],
+    [
+      0.2,
+      0.5
+    ]
+  ],
+  "preprocess": "subtract arithmetic mean, then multiply separable 2-D Hann",
+  "transform": "full complex fft2; fftshift radial mask; zero other complex coefficients; ifft2; real part",
+  "display": "coolwarm centred at zero; shared-scale and per-panel auto-scale versions",
+  "energy": "sum of squared inverse-FFT image; total is sum of squared preprocessed image",
+  "normal_selection": "among individually clean surrounding 8 blocks, choose band-energy fraction nearest their median",
+  "selection": "highest prior 0.02-0.05 radial-spectrum RMS among examples with at least one clean reference; fill with no-clean examples only if needed"
+}

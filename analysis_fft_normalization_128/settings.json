@@ -1,0 +1,73 @@
+{
+  "analysis_only": true,
+  "window_px": 128,
+  "stride_px": 16,
+  "reference_distance_px": 128,
+  "reference_offsets": [
+    [
+      -1,
+      -1
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "reference_aggregation": "per-frequency median of exactly 8 surrounding blocks",
+  "frequency_range_cycles_per_pixel": [
+    0.02,
+    0.5
+  ],
+  "radial_bin_width": 0.01,
+  "bands": [
+    [
+      0.0,
+      0.02
+    ],
+    [
+      0.02,
+      0.05
+    ],
+    [
+      0.05,
+      0.1
+    ],
+    [
+      0.1,
+      0.2
+    ],
+    [
+      0.2,
+      0.5
+    ]
+  ],
+  "normalisation": "P_norm(fx,fy)=P(fx,fy)/sum(P over 0.02<=radius<=0.50); radial weighted mean; 10log10",
+  "raw": "radial weighted mean of P; 10log10",
+  "score": "sqrt(mean((target_dB-median(reference_dB))^2))",
+  "representative_target": "maximum normalized score among strict-8 target centres whose 16x16 evaluation cell overlaps that defect",
+  "reference_clean": "none of eight full 128x128 reference windows overlaps any defect, tag, or background annotation"
+}

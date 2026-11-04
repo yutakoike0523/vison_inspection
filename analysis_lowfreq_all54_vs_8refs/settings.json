@@ -1,0 +1,23 @@
+{
+  "window_px": 128,
+  "stride_px": 16,
+  "reference_spacing_px": 128,
+  "reference_order": {
+    "ref1": "upper-left",
+    "ref2": "up",
+    "ref3": "upper-right",
+    "ref4": "left",
+    "ref5": "right",
+    "ref6": "lower-left",
+    "ref7": "down",
+    "ref8": "lower-right"
+  },
+  "band_cycles_per_pixel": [
+    0.02,
+    0.05
+  ],
+  "preprocess": "subtract patch mean then separable 2-D Hann",
+  "inverse": "keep complex fft2 coefficients in radial ring, zero the rest, ifft2 real part",
+  "z_score_like": "(defect RMS - mean of all 8 reference RMS)/population std of all 8 reference RMS",
+  "clean_flag": "no overlap with any defect, tag, or background annotation"
+}

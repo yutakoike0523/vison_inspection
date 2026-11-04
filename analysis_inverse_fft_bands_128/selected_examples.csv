@@ -1,0 +1,13 @@
+﻿selection_order,image_number,defect_number,defect_type,grid_light,prior_band_002_005_rms_db,normal_status,clean_reference_count,normal_reference_index,defect_x,defect_y,normal_x,normal_y
+1,17,1,局所変形,yes,5.065147399902344,clean_reference_selected,5,7,656,320,656,448
+2,6,1,局所変形,yes,4.720006465911865,clean_reference_selected,5,1,1328,816,1200,688
+3,15,1,局所変形,yes,4.212714672088623,clean_reference_selected,4,6,896,208,768,336
+4,20,2,点状異常,no,8.474074363708496,clean_reference_selected,3,1,1488,1280,1360,1152
+5,20,1,点状異常,no,6.934586048126221,clean_reference_selected,8,3,592,1056,720,928
+6,16,2,点状異常,yes,6.828043460845947,clean_reference_selected,7,1,1472,1280,1344,1152
+7,20,6,線状異常,no,2.4841792583465576,clean_reference_selected,8,6,928,1312,800,1440
+8,13,3,線状異常,yes,2.334991931915283,clean_reference_selected,3,1,896,1056,768,928
+9,20,7,線状異常,no,2.3214635848999023,clean_reference_selected,8,5,240,1136,368,1136
+10,21,4,面状異常,no,3.9446306228637695,clean_reference_selected,5,6,1536,768,1408,896
+11,21,5,面状異常,no,3.058506488800049,clean_reference_selected,3,8,1648,304,1776,432
+12,1,2,面状異常,no,3.6872336864471436,no_clean_reference,0,,752,288,,
