@@ -1,0 +1,5 @@
+{
+  "notch": "same prior top2 conjugate pairs; hard radius 2",
+  "local_fft": "imported unchanged from analysis_fft_normalization_128.py; 128px Hann mean removal, stride16, strict8 reference, total-power normalisation, radial bins .02-.50",
+  "fixed_windows": "all before/after defect and normal comparisons use identical strict-8 target centres; representative defect coordinate is baseline normalised-score maximum and is not reselected after notch"
+}

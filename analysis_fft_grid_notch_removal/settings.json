@@ -1,0 +1,11 @@
+{
+  "prior_peak_files": [
+    "C:\\work\\Visual_inspection\\analysis_full_image_fft_peaks\\fft_peak_pairs_top20.csv",
+    "C:\\work\\Visual_inspection\\analysis_full_image_fft_peaks\\grid_family_candidates.csv"
+  ],
+  "selected_condition": "top2_hard_r2",
+  "selection_rule": "image15 spatial grid suppression/visual comparison only; no defect label used",
+  "notch": "hard circular radius 2 FFT bins around prior top2 conjugate pairs",
+  "detector": "existing analysis_fft_normalization_128.py: normalized radial 128x128 FFT, stride 16, strict-8 reference, unchanged settings",
+  "evaluation": "pooled windows; instance=max score among annotation-overlapping 16px evaluation cells; thresholds per condition pooled normal windows"
+}

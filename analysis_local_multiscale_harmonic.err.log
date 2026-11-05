@@ -1,0 +1,13 @@
+C:\work\Visual_inspection\local_multiscale_grid_harmonic_analysis.py:27: RuntimeWarning: divide by zero encountered in log10
+  prom=10*np.log10(power[iy,ix]/max(float(np.median(power[ring])),EPS));return {'fx':float(fx[ix]),'fy':float(fy[iy]),'y':int(iy),'x':int(ix),'power':float(power[iy,ix]),'prom_db':float(prom)}
+Traceback (most recent call last):
+  File "C:\work\Visual_inspection\local_multiscale_grid_harmonic_analysis.py", line 145, in <module>
+    lines+=['','## 出力','', '- `multiscale_peak_observations.csv`: 512/256/128pxのピーク位置・prominence・一致判定。','- `harmonic_confirmation_summary.csv`: 画像別・高調波別の確認率。','- `image15_local_harmonic_comparison.png`: 基本のみ／高調波込み／逆FFT成分／FFT。','- `local_ola_reconstruction_metrics.csv`: OLA復元精度とノッチ幅（cycles/pixel）。','- `local_harmonic_performance.csv`, `local_harmonic_type_performance.csv`: 固定窓集合の性能。','','## 限界','', '512px窓には約3周期しか含まれず、局所周波数推定には分解能限界がある。局所ピークが不安定な位置での過剰ノッチを避けるため、確認条件は保守的にした。']
+                         ^^^^^^
+  File "C:\work\Visual_inspection\local_multiscale_grid_harmonic_analysis.py", line 130, in main
+    del rec,wins,img,glob
+                ^^^^^^^^^^
+  File "C:\work\Visual_inspection\local_multiscale_grid_harmonic_analysis.py", line 104, in evaluate
+    m=det.rect_any(det.integral(a['mask']),xs,ys,16)&~em;yy,xx=np.nonzero(m)
+                           ^^^^^
+KeyError: 'none'

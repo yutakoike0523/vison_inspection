@@ -1,0 +1,2 @@
+C:\work\Visual_inspection\local_multiscale_grid_harmonic_analysis.py:27: RuntimeWarning: divide by zero encountered in log10
+  prom=10*np.log10(power[iy,ix]/max(float(np.median(power[ring])),EPS));return {'fx':float(fx[ix]),'fy':float(fy[iy]),'y':int(iy),'x':int(ix),'power':float(power[iy,ix]),'prom_db':float(prom)}
