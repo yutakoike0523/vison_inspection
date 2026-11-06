@@ -1,0 +1,4 @@
+﻿image,window_px,stride_px,reference_distance_px,frequency_band,reference_aggregation,power_normalisation,normal_windows,normal_median_rms_db,normal_std_rms_db,display_formula,display_vmin,display_vmax
+15,128,16,128,0.02-0.50,median of exactly 8,total power in 0.02-0.50,5578,0.9228152632713318,0.27145829796791077,(score-normal_median)/normal_std,-2.0,6.0
+15,128,8,128,0.02-0.50,median of exactly 8,total power in 0.02-0.50,22053,0.9201851487159729,0.26903197169303894,(score-normal_median)/normal_std,-2.0,6.0
+15,128,4,128,0.02-0.50,median of exactly 8,total power in 0.02-0.50,87681,0.9197648763656616,0.26916924118995667,(score-normal_median)/normal_std,-2.0,6.0

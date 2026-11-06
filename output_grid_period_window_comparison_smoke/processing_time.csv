@@ -1,0 +1,5 @@
+﻿image_id,window_modes,window_size,status,grid_width,grid_height,fft_windows,effective_batch,seconds
+image18,fixed128,128,computed,19,13,247,32,0.028090900043025613
+image18,period_1x,32,computed,25,19,475,32,0.004134699935093522
+image18,period_2x,64,computed,23,17,391,32,0.0070778001099824905
+image18,period_3x,96,computed,21,15,315,32,0.010989599861204624

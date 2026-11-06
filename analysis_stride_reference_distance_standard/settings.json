@@ -1,0 +1,32 @@
+{
+  "canonical_source": "C:\\work\\vison_inspection\\analysis_all_images_grid_removal_fft_comparison\\per_image\\image11_normalised_unnormalised_shared_normal_scale.png",
+  "window_px": 128,
+  "baseline_stride_px": 16,
+  "baseline_reference_distance_px": 48,
+  "tested_stride_px": [
+    16,
+    8,
+    4
+  ],
+  "tested_reference_distance_px": [
+    48,
+    128,
+    256
+  ],
+  "reference_count": 8,
+  "reference_aggregation": "per-frequency arithmetic mean",
+  "frequency_range_cycles_per_pixel": [
+    0.01,
+    0.5
+  ],
+  "radial_bin_width": 0.01,
+  "window_function": "2D Hann",
+  "remove_window_mean": true,
+  "score": "RMS of target-minus-reference radial log-power spectrum",
+  "normalised_spectrum": "divide by total 2D power in 0.01-0.50",
+  "display": "baseline stride16/d48 original normal-region p05-p99, shared across all 9 panels",
+  "images": {
+    "main": 15,
+    "low_visible_defect": 16
+  }
+}

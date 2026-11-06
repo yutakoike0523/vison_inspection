@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-11-06T16:52:31.691423+09:00",
+  "data": "C:\\work\\vison_inspection\\data20260903\\data20260903",
+  "fft_order": "subtract patch mean -> 2-D Hann -> rfft2 -> |F|^2 -> conjugate-weighted radial mean -> 10log10 per window -> aggregate 8 dB spectra -> RMS difference",
+  "reference_order": "B: aggregate after dB conversion",
+  "band_cycles_per_pixel": [
+    0.02,
+    0.5
+  ],
+  "radial_bin_width": 0.01,
+  "stride_px": 16,
+  "experiment_A_distances_px": [
+    48,
+    64,
+    80,
+    96,
+    112,
+    128
+  ],
+  "experiment_B_distance_rules": [
+    "fixed48",
+    "0.5W",
+    "0.75W",
+    "1.0W"
+  ],
+  "development_images": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "validation_images": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "selected_rule": {
+    "window_mode": "period_3x",
+    "distance": "1.0W"
+  },
+  "thresholds": "A/B LOIO equal-image normal p99/p95; selected C development-only normal p99/p95",
+  "fft_score_seconds_sum": 340.6350303001236,
+  "commands": [
+    "py -3.10 reference_distance_aggregation_experiment.py --output output_reference_distance_and_aggregation --workers 6 --batch-size 64",
+    "py -3.10 reference_distance_aggregation_render.py --image N --output output_reference_distance_and_aggregation",
+    "py -3.10 finalize_reference_distance_aggregation.py --output output_reference_distance_and_aggregation"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]"
+}

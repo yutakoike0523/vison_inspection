@@ -1,0 +1,64 @@
+{
+  "new_w128_experiment": {
+    "images": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "window": 128,
+    "stride": 16,
+    "reference_distance": 48,
+    "reference_count": 8,
+    "reference_aggregation": "arithmetic mean per frequency in dB",
+    "bands": {
+      "0.01-0.50": [
+        0.01,
+        0.5
+      ],
+      "0.02-0.50": [
+        0.02,
+        0.5
+      ],
+      "0.02-0.10": [
+        0.02,
+        0.1
+      ],
+      "0.01-0.05": [
+        0.01,
+        0.05
+      ],
+      "0.05-0.50": [
+        0.05,
+        0.5
+      ]
+    },
+    "normalisation": "P/sum(P over 0.01<=radius<=0.50), then conjugate-weighted radial mean, then 10log10",
+    "raw": "same without total-power division",
+    "score": "RMS(target dB spectrum - mean of 8 reference dB spectra)",
+    "evaluation_area": "16x16 px at target centre",
+    "band_boundaries": "left closed, right open except final 0.50 endpoint"
+  },
+  "existing_window_evidence": {
+    "defect_metrics": "W64/128/192/256, reference distance 128",
+    "strict_maps": "W64/128/256/512, reference distance equals W"
+  },
+  "limitations": [
+    "fixed-48 window-size sweep beyond W128 was not recomputed",
+    "region-adaptive window fusion was not calibrated",
+    "image18 excluded from strict-8 adaptive-window evaluation because no W128 map exists"
+  ]
+}

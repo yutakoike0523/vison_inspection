@@ -1,0 +1,4 @@
+﻿condition,normal_windows,normal_median_rms_db,normal_std_rms_db,display_formula,display_vmin,display_vmax
+A：8参照平均・パワー正規化なし,5578,1.1611140966415405,0.8603833913803101,(score - normal_median) / normal_std,-2.0,6.0
+B：8参照中央値・パワー正規化なし,5578,1.1530654430389404,0.6785895824432373,(score - normal_median) / normal_std,-2.0,6.0
+C：8参照中央値・パワー正規化あり,5578,0.9228148460388184,0.27145829796791077,(score - normal_median) / normal_std,-2.0,6.0

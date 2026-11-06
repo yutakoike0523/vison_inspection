@@ -1,0 +1,38 @@
+{
+  "images": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "excluded_no_grid_images": [
+    1,
+    19,
+    20,
+    21
+  ],
+  "window_px": 128,
+  "stride_px": 16,
+  "reference_distance_px": 48,
+  "reference_count": 8,
+  "reference_aggregation": "per-frequency arithmetic mean",
+  "frequency_range_cycles_per_pixel": [
+    0.01,
+    0.5
+  ],
+  "display_scale": "per-image original auxiliary normal-region p05-p99; shared across three conditions within each spectrum column",
+  "harmonic_confirmation": "image15 uses 512/256/128 multiscale confirmation; other images reproduce the existing experiment's 512-scale confirmation"
+}

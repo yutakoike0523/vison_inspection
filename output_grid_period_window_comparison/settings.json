@@ -1,0 +1,56 @@
+{
+  "created_at": "2026-11-06T15:21:43.671781+09:00",
+  "data": "C:\\work\\vison_inspection\\data20260903\\data20260903",
+  "images": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "stride_px": 16,
+  "score_cell_px": 16,
+  "radial_bin_width": 0.01,
+  "bands_cycles_per_pixel": {
+    "conventional": [
+      0.02,
+      0.5
+    ],
+    "low_inclusive": [
+      0.005,
+      0.5
+    ]
+  },
+  "distance_modes": {
+    "fixed48": 48,
+    "proportional": "round16(0.375*W)"
+  },
+  "reference_policy": "exactly 8 in-image windows",
+  "reference_aggregation": "per-frequency arithmetic mean of 8 dB spectra",
+  "preprocessing": "subtract patch mean; separable 2-D Hann",
+  "fft": "scipy.fft.rfft2 default backward scaling; FFT size=W; no zero padding",
+  "power": "abs(F)^2; no total-power normalisation",
+  "radial": "conjugate-weighted arithmetic mean linear power, then 10log10",
+  "score": "RMS(target dB radial spectrum - mean reference dB radial spectrum)",
+  "notch_filter": false,
+  "annotation_precedence": "damage > tag/background > normal",
+  "threshold": "LOIO equal-image-weighted normal p99/p95",
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.22631-SP0",
+  "workers": 6,
+  "batch_size": 64,
+  "runtime_seconds": 425.53503970010206,
+  "command": "grid_period_window_comparison.py --output output_grid_period_window_comparison --workers 6 --batch-size 64"
+}

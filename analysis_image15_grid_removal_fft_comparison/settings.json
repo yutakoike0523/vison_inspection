@@ -1,0 +1,16 @@
+{
+  "image": 15,
+  "window_px": 128,
+  "stride_px": 16,
+  "reference_distance_px": 48,
+  "reference_count": 8,
+  "reference_aggregation": "per-frequency arithmetic mean",
+  "frequency_range_cycles_per_pixel": [
+    0.01,
+    0.5
+  ],
+  "radial_bin_width_cycles_per_pixel": 0.01,
+  "normalisation": "divide 2D power by total power in 0.01-0.50 before radial averaging",
+  "score": "RMS(target radial dB spectrum - mean of 8 reference radial dB spectra)",
+  "display_scale": "original auxiliary normal-region p05-p99, shared across three conditions per column"
+}
